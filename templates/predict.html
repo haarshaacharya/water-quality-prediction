@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Prediction</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="card big">
+
+<h2>Enter Water Parameters</h2>
+
+<form action="/result" method="POST">
+
+<input type="number"
+step="any"
+name="ph"
+placeholder="pH"
+required>
+
+<input type="number"
+step="any"
+name="do"
+placeholder="Dissolved Oxygen"
+required>
+
+<input type="number"
+step="any"
+name="bod"
+placeholder="BOD"
+required>
+
+<input type="number"
+step="any"
+name="temp"
+placeholder="Temperature"
+required>
+
+<input type="number"
+step="any"
+name="turb"
+placeholder="Turbidity"
+required>
+
+<button type="submit">
+Predict Water Quality
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

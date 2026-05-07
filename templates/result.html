@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Result</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="card big">
+
+<h1>Water Quality Result</h1>
+
+{% if result == "GOOD" %}
+<h2 class="good">SAFE WATER</h2>
+
+{% elif result == "MODERATE" %}
+<h2 class="moderate">MODERATE WATER</h2>
+
+{% else %}
+<h2 class="unsafe">UNSAFE WATER</h2>
+
+{% endif %}
+
+<h3>Total Water Quality Index : {{ wqi }} / 100</h3>
+
+<h3>Suggestion</h3>
+
+<p>{{ suggestion }}</p>
+
+<canvas id="graph"></canvas>
+
+<br><br>
+
+<a href="/predict">
+<button>Check Again</button>
+</a>
+
+<a href="/logout">
+<button class="danger">Logout</button>
+</a>
+
+</div>
+
+<script>
+
+const values = [
+{{ph}},
+{{do}},
+{{bod}},
+{{temp}},
+{{turb}}
+];
+
+new Chart(document.getElementById("graph"), {
+
+type: "bar",
+
+data: {
+
+labels: [
+"pH",
+"DO",
+"BOD",
+"Temp",
+"Turbidity"
+],
+
+datasets: [{
+label: "Water Parameters",
+data: values
+}]
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
