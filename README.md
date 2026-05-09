@@ -63,3 +63,6 @@ A Flask-based AI project that predicts water quality using Machine Learning.
 ```bash
 python train_model.py
 python app.py
+
+web link:
+pttps://water-quality-prediction-0028.onrender.com
