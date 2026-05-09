@@ -65,4 +65,4 @@ python train_model.py
 python app.py
 
 web link:
-pttps://water-quality-prediction-0028.onrender.com
+https://water-quality-prediction-0028.onrender.com
