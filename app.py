@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 import numpy as np
 import joblib
-import json
 from suggestion_engine import generate_suggestion
 
 app = Flask(__name__)
@@ -10,6 +9,7 @@ app.secret_key = "water_secret"
 # Load ML model
 model = joblib.load("model.pkl")
 
+
 # ---------------- LOGIN ----------------
 @app.route("/", methods=["GET", "POST"])
 def login():
@@ -17,31 +17,10 @@ def login():
     if request.method == "POST":
 
         username = request.form["username"]
-        password = request.form["password"]
 
-        with open("users.json") as f:
-            users = json.load(f)
-
-        # Existing User
-        if username in users:
-
-            if users[username] == password:
-                session["user"] = username
-                return redirect("/home")
-
-            else:
-                return render_template(
-                    "login.html",
-                    error="Wrong Password"
-                )
-
-        # New User Auto Create
-        users[username] = password
-
-        with open("users.json", "w") as f:
-            json.dump(users, f)
-
+        # Any username/password allowed
         session["user"] = username
+
         return redirect("/home")
 
     return render_template("login.html")
@@ -170,5 +149,6 @@ def logout():
     return redirect("/")
 
 
+# ---------------- RUN ----------------
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
